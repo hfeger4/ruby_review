@@ -31,7 +31,7 @@ class Node
         seen << current_node.next.data
         current_node = current_node.next
       end
-    end 
+    end
   end
 
 end
