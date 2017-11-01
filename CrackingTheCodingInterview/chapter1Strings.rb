@@ -1,8 +1,17 @@
+# def is_unique(str)
+#   str.chars.each do |letter|
+#     return false if str.count(letter) != 1
+#   end
+#   true
+# end
+require 'set'
+
 def is_unique(str)
+  set1 = Set.new
   str.chars.each do |letter|
-    return false if str.count(letter) != 1
+    set1.add(letter)
   end
-  true
+  set1.length == str.length
 end
 
 p is_unique("abcdee") == false
