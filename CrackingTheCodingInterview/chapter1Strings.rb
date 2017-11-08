@@ -42,10 +42,10 @@ end
 p palindrome_permutation("Tact Coa")
 
 def one_away(str1, str2)
-  if (str1.chars - str2.chars | str2.chars - str1.chars).length > 2
-    return false
-  end
-  true
+  # if (str1.chars - str2.chars | str2.chars - str1.chars).length > 2
+  #   return false
+  # end
+  # true
 end
 
 p one_away("pale", "ple") == true
