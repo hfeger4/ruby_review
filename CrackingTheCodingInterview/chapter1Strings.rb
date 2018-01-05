@@ -188,8 +188,9 @@ p rotate_matrix(my_matrix)
 
 # Zero Matrix: Write an algorithm such that if an element in an MxN matrix is 0,
 # its entire row and column are set to 0.
-
-def zero_matrix(matrix)
+#time complexity O(n*m)
+def zero_matrix(orig_matrix)
+  matrix = orig_matrix.dup
   zero_rows = []
   zero_columns = []
 
@@ -210,7 +211,7 @@ def zero_matrix(matrix)
     zero_columns.each do |i|
       array[i] = 0
     end
-  end 
+  end
   matrix
 
 end
@@ -221,15 +222,23 @@ zero_matrix = [[1, 0, 3],
 
 p zero_matrix(zero_matrix)
 
-# String Rotation:Assumeyou have a method isSubstringwhich checks if one word is a substring of another.
+# String Rotation:Assumeyou have a method isSubstring which checks if one word is a substring of another.
 # Given two strings, sl and s2, write code to check if s2 is a rotation of sl using only one call to isSubstring
 # (e.g.,"waterbottle" is a rotation of"erbottlewat").
 
-def string_rotation(str1,str2)
-  if (str1 + str1).include?(str2)
+def isSubstring(str1,str2)
+  if str1.include?(str2)
+    return true
+  end
+  if str2.include?(str1)
     return true
   end
   false
+end
+
+def string_rotation(str1,str2)
+  str1 = str1 + str1
+  isSubstring(str1,str2)
 end
 
 p string_rotation("waterbottle","erbottlewat")
