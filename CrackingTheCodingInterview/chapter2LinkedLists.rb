@@ -4,34 +4,8 @@
 # Write code to remove duplicates from an unsorted linked Lists
 
 require "Set"
+require_relative 'linked_list.rb'
 
-class Node
-  attr_accessor :data, :next
 
-  def initialize(data)
-    @data = data
-    @next = nil
-  end
 
-  def remove_next_node(current_node)
-    deleted_node = current_node.next
-    current_node.next = current_node.next.next
-    deleted_node.next = nil
-  end
-
-  def remove_duplicates(head)
-    seen = Set.new
-    current_node = head
-    seen << current_node.data
-
-    until current_node.next.nil?
-      if seen.include?(current_node.next.data)
-        remove_next_node(current_node)
-      else
-        seen << current_node.next.data
-        current_node = current_node.next
-      end
-    end
-  end
-
-end
+# Return Kth to Last: Implement an algorithm to  nd the kth to last element of a singly linked list.
