@@ -33,4 +33,26 @@ linked_list.append(7,2)
 
 p remove_dups(linked_list)
 
-# Return Kth to Last: Implement an algorithm to  find the kth to last element of a singly linked list.
+# Return Kth to Last: Implement an algorithm to  find the nth to last element of a singly linked list.
+
+linked_list2 = LinkedList.new
+linked_list2.append(1,1)
+linked_list2.append(2,2)
+linked_list2.append(3,3)
+linked_list2.append(4,1)
+linked_list2.append(5,2)
+linked_list2.append(6,2)
+linked_list2.append(7,2)
+
+def kth_to_last(linked_list, k)
+  p1 = linked_list.first
+  p2 = linked_list[k-1]
+
+  until p2 == linked_list.last
+    p1 = p1.next
+    p2 = p2.next
+  end
+p  p1.key.to_s
+end
+
+kth_to_last(linked_list2, 3)
