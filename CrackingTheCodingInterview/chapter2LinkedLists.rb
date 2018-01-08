@@ -16,8 +16,8 @@ def remove_dups(linked_list)
       dups << node.key
     end
   end
-  dups.each do |val|
-    linked_list.remove(val)
+  dups.each do |key|
+    linked_list.remove(key)
   end
   linked_list.to_s
 end
@@ -45,6 +45,8 @@ linked_list2.append(6,2)
 linked_list2.append(7,2)
 
 def kth_to_last(linked_list, k)
+  #Create two pointers, with one pointer starting K elements ahead of the first.
+  #Transverse list and once the K pointer hits the end the first pointer will be K elements from the last.
   p1 = linked_list.first
   p2 = linked_list[k-1]
 
@@ -64,3 +66,28 @@ kth_to_last(linked_list2, 3)
 # EXAMPLE
 # lnput:the node c from the linked lista->b->c->d->e->f
 # Result: nothing is returned, but the new linked list looks likea->b->d->e- >f
+
+def delete_middle_node(linked_list)
+  p1 = linked_list.first
+  p2 = linked_list.first.next
+
+  until p2 == linked_list.last
+    p1 = p1.next
+    p2 = p2.next.next
+  end
+  linked_list.remove(p1.key)
+
+  # p1.key.to_s
+  linked_list.to_s
+end
+
+linked_list3 = LinkedList.new
+linked_list3.append(1,"a")
+linked_list3.append(2,"b")
+linked_list3.append(3,"c")
+linked_list3.append(4,"d")
+linked_list3.append(5,"e")
+linked_list3.append(6,"f")
+
+
+p delete_middle_node(linked_list3)
