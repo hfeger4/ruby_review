@@ -99,3 +99,36 @@ p delete_middle_node(linked_list3)
 # it does not need to appear between the left and right partitions.
 # EXAMPLE
 # Input: 3 -> 5 -> 8 -> 5 -> 10 -> 2 -> 1[partition=5] Output: 3 -> 1 -> 2 -> 10 -> 5 -> 5 -> 8
+
+def partition(linked_list, x)
+  first_arr = []
+  mid_arr = []
+  sec_arr = []
+  new_list = LinkedList.new
+  linked_list.each do |node|
+    if node.val < x
+      first_arr << node.val
+    elsif node.val == x
+      mid_arr << node.val
+    else
+      sec_arr << node.val
+    end
+  end
+
+  (first_arr + mid_arr + sec_arr).each do |val|
+    new_list.append(0,val)
+  end
+
+  new_list.to_s
+end
+
+linked_list4 = LinkedList.new
+linked_list4.append(1,3)
+linked_list4.append(2,5)
+linked_list4.append(3,8)
+linked_list4.append(4,5)
+linked_list4.append(5,10)
+linked_list4.append(6,2)
+linked_list4.append(7,1)
+
+p partition(linked_list4, 5)
