@@ -132,3 +132,44 @@ linked_list4.append(6,2)
 linked_list4.append(7,1)
 
 p partition(linked_list4, 5)
+
+# Sum Lists: You have two numbers represented by a linked list, where each node contains a single digit.
+# The digits are stored in reverse order, such that the 1 's digit is at the head of the list.
+# Write a function that adds the two numbers and returns the sum as a linked list.
+# EXAMPLE
+# Input:(7-> 1 -> 6) + (5 -> 9 -> 2).Thatis,617 + 295. Output:2 -> 1 -> 9.Thatis,912.
+# FOLLOW UP
+# Suppose the digits are stored in forward order. Repeat the above problem. EXAMPLE
+# lnput:(6 -> 1 -> 7) + (2 -> 9 -> 5).That is,617 + 295. Output:9 -> 1 -> 2.Thatis,912.
+
+def sum_lists(linked_list1, linked_list2)
+  arr1 = []
+  arr2 = []
+  linked_list1.each do |node|
+    arr1 << node.val.to_s
+  end
+  linked_list2.each do |node|
+    arr2 << node.val.to_s
+  end
+  sum = arr1.join("").reverse.to_i + arr2.join.reverse.to_i
+  sum_arr = sum.to_s.split(",")
+
+  new_list = LinkedList.new
+  sum_arr.each do |num|
+    new_list.append(nil, num)
+  end
+  new_list.to_s
+end
+
+linked5 = LinkedList.new
+linked6 = LinkedList.new
+
+linked5.append(nil, 7)
+linked5.append(nil, 1)
+linked5.append(nil, 6)
+
+linked6.append(nil, 5)
+linked6.append(nil, 9)
+linked6.append(nil, 2)
+
+p sum_lists(linked5,linked6)
