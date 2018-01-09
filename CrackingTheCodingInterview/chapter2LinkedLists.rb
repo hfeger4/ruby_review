@@ -202,3 +202,89 @@ linked_list5.append(6,"a")
 linked_list5.append(7,"a")
 
 p palindrome(linked_list5)
+
+# Intersection: Given two (singly) linked lists, determine if the two lists intersect.
+# Return the inter­secting node. Note that the intersection is defined based on reference, not value.
+# That is, if the kth node of the  first linked list is the exact same node (by reference) as the jth node
+# of the second linked list, then they are intersecting.
+
+def intersection(linkedlist1, linkedlist2)
+  return false if linkedlist1.last != linkedlist2.last
+  length1 = get_size(linkedlist1)
+  length2 = get_size(linkedlist2)
+
+  if length1 > length2
+    longer = linkedlist1
+    shorter = linkedlist2
+    diff = longer-shorter
+  else length2 > length1
+    longer = linkedlist2
+    shorter = linkedlist1
+    diff = longer-shorter
+  end
+
+  p1 = longer[diff]
+  p2 = shorter.first
+
+  while p1 != p2
+    p1.next
+    p2.next
+  end
+
+  return p1
+
+end
+
+def get_size(linked_list)
+  count = 0
+  linked_list.each do |node|
+    count += 1
+  end
+  count
+end
+
+linked1 = LinkedList.new
+linked2 = LinkedList.new
+
+linked1.append(1, 7)
+linked1.append(2, 1)
+linked1.append(3, 6)
+linked1.append(4, 4)
+
+linked2.append(nil, 5)
+linked2.append(nil, 9)
+linked2.append(nil, 2)
+linked2.append(nil, 4)
+
+p intersection(linked1,linked2)
+
+# Loop Detection: Given a circular linked list, implement an algorithm that returns the node at the
+# beginning of the loop.
+# DEFINITION
+# Circular linked list: A (corrupt) linked list in which a node's next pointer points to an earlier node,
+# so as to make a loop in the linked list.
+# EXAMPLE
+# Input: A -> B -> C -> D -> E -> C[thesameCasearlier]
+# Output: C
+
+def loop_detection(linked_list)
+  arr = []
+  linked_list.each do |node|
+    if arr.include?(node.val)
+      return node.val
+    else
+      arr << node.val
+    end
+  end
+  false
+end
+
+linkedlist8 = LinkedList.new
+linkedlist8.append(nil,"a")
+linkedlist8.append(nil,"b")
+linkedlist8.append(nil,"c")
+linkedlist8.append(nil,"d")
+linkedlist8.append(nil,"e")
+linkedlist8.append(nil,"c")
+
+p loop_detection(linkedlist8)
