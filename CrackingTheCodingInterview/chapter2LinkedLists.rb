@@ -69,9 +69,9 @@ kth_to_last(linked_list2, 3)
 
 def delete_middle_node(linked_list)
   p1 = linked_list.first
-  p2 = linked_list.first.next
+  p2 = linked_list.first
 
-  until p2 == linked_list.last
+  until p2 == linked_list.last || p2 == linked_list.last.prev
     p1 = p1.next
     p2 = p2.next.next
   end
@@ -88,6 +88,7 @@ linked_list3.append(3,"c")
 linked_list3.append(4,"d")
 linked_list3.append(5,"e")
 linked_list3.append(6,"f")
+linked_list3.append(7,"g")
 
 
 p delete_middle_node(linked_list3)
@@ -101,25 +102,29 @@ p delete_middle_node(linked_list3)
 # Input: 3 -> 5 -> 8 -> 5 -> 10 -> 2 -> 1[partition=5] Output: 3 -> 1 -> 2 -> 10 -> 5 -> 5 -> 8
 
 def partition(linked_list, x)
-  first_arr = []
-  mid_arr = []
-  sec_arr = []
-  new_list = LinkedList.new
+  pre_list = LinkedList.new
+  equal_list = LinkedList.new
+  post_list = LinkedList.new
+
   linked_list.each do |node|
     if node.val < x
-      first_arr << node.val
+      pre_list.append(nil,node.val)
     elsif node.val == x
-      mid_arr << node.val
+      equal_list.append(nil,x)
     else
-      sec_arr << node.val
+      post_list.append(nil,node.val)
     end
   end
 
-  (first_arr + mid_arr + sec_arr).each do |val|
-    new_list.append(0,val)
+  equal_list.each do |node|
+    pre_list.append(nil, node.val)
   end
 
-  new_list.to_s
+  post_list.each do |node|
+    pre_list.append(nil, node.val)
+  end
+
+  pre_list.to_s
 end
 
 linked_list4 = LinkedList.new
@@ -173,3 +178,27 @@ linked6.append(nil, 9)
 linked6.append(nil, 2)
 
 p sum_lists(linked5,linked6)
+
+def palindrome(linked_list)
+  p1 = linked_list.first
+  p2 = linked_list.last
+
+  until p1 == p2
+    p1 = p1.next
+    p2 = p2.prev
+    return false if p1.val != p2.val
+  end
+
+  true
+end
+
+linked_list5 = LinkedList.new
+linked_list5.append(1,"a")
+linked_list5.append(2,"a")
+linked_list5.append(3,"b")
+linked_list5.append(4,"b")
+linked_list5.append(5,"b")
+linked_list5.append(6,"a")
+linked_list5.append(7,"a")
+
+p palindrome(linked_list5)
