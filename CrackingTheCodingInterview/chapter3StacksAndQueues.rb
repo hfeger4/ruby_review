@@ -104,9 +104,81 @@ class MyQueue
   def initialize
     @newStack = Stack.new
     @oldStack = Stack.new
+    @count = 0
   end
 
   def add(el)
     @newStack.push(el)
   end
 end
+
+# Animal Shelter: An animal shelter, which holds only dogs and cats,
+# operates on a strictly" rst in,  rst out" basis.
+# People must adopt either the"oldest" (based on arrival time) of all animals at the shelter,
+# or they can select whether they would prefer a dog or a cat
+# (and will receive the oldest animal of that type).
+# They cannot select which speci c animal they would like.
+# Create the data structures to maintain this system and implement operations
+# such as enqueue, dequeueAny, dequeueDog, and dequeueCat.
+# You may use the built-in Linked list data structure.
+
+class AnimalShelter
+  def initialize()
+    @cats = []
+    @dogs = []
+    @count = 0
+  end
+
+  def enqueue(animal)
+    animal.count = @count
+    @count += 1
+    if animal.is_a?(Dog)
+      @dogs.push(animal)
+    else
+      @cats.push(animal)
+    end
+  end
+
+  def dequeue_cat
+    @cats.pop
+  end
+
+  def dequeue_dog
+    @dogs.pop
+  end
+
+  def dequeue_oldest
+    @cats.last.count > @dogs.last.count ? @cats.pop : @dogs.pop
+  end
+
+end
+
+class Animal
+  attr_accessor :count
+  def initialize()
+    @count = count
+  end
+end
+
+class Dog < Animal
+end
+
+class Cat < Animal
+end
+
+kitty = Cat.new
+catty = Cat.new
+bubbles = Cat.new
+fido = Dog.new
+doge = Dog.new
+doggy = Dog.new
+
+dogs_and_cats = AnimalShelter.new
+dogs_and_cats.enqueue(kitty)
+dogs_and_cats.enqueue(fido)
+dogs_and_cats.enqueue(bubbles)
+dogs_and_cats.enqueue(catty)
+dogs_and_cats.enqueue(doge)
+dogs_and_cats.enqueue(doggy)
+p dogs_and_cats.dequeue_cat
+p dogs_and_cats.dequeue_oldest
