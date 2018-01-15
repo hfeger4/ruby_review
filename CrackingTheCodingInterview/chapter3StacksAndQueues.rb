@@ -172,6 +172,7 @@ bubbles = Cat.new
 fido = Dog.new
 doge = Dog.new
 doggy = Dog.new
+hello = Dog.new
 
 dogs_and_cats = AnimalShelter.new
 dogs_and_cats.enqueue(kitty)
